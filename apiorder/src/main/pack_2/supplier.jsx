@@ -12,7 +12,7 @@ export default function Main(){
     }, []);
 
     const loadUsers=async()=>{
-        const result =await axios.get("http://localhost:9090/user/getAllUsers");
+        const result =await axios.get("http://localhost:9090/sopplier/getSuppliers");
         setUsers(result.data);
     }
     return(
@@ -41,10 +41,9 @@ export default function Main(){
                           <th scope="col">Cin</th>
                           <th scope="col">First Name</th>
                           <th scope="col">Last Name</th>
-                          <th scope="col">PassWord</th>
-                          <th scope="col">Adress</th>
-                          <th scope="col">Email</th>
-                          <th scope="col">phone</th>
+                          <th scope="col">Phone</th>
+                          <th scope="col">email</th>
+                          <th scope="col">nomberSupplier</th>
                         </tr>
                     </thead>
                     <tbody>
