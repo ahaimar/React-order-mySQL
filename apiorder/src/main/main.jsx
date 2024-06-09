@@ -1,11 +1,10 @@
-
 import { useEffect, useState } from 'react';
-import '../../node_modules/bootstrap/dist/css/bootstrap-reboot.css';
+import '../../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 export default function Main(){
     const [users, setUsers] = useState([]);
-
     useEffect(()=>{
 
       loadUsers();
@@ -38,26 +37,32 @@ export default function Main(){
                   <table className="table table-striped border shadow">
                     <thead>
                         <tr>
-                          <th scope="col">Cin</th>
+                          <th scope="col" >Cin</th>
                           <th scope="col">First Name</th>
                           <th scope="col">Last Name</th>
                           <th scope="col">PassWord</th>
                           <th scope="col">Adress</th>
                           <th scope="col">Email</th>
                           <th scope="col">phone</th>
+                          <th scope="col">Action </th>
                         </tr>
                     </thead>
                     <tbody>
                       
                         {users.map((user, index) => (
                           <tr key={index}>
-                            <th scope="row">{index + 1}</th>
+                            <th scope="row">{user.cin}</th>
                             <td>{user.ferstName}</td>
                             <td>{user.lastName}</td>
                             <td>{user.address}</td>
                             <td>{user.age}</td>
                             <td>{user.email}</td>
                             <td>{user.phone}</td>
+                            <td>
+                              <button className='btn btn-primary mx-2'>View</button>
+                              <Link className='btn btn-outline-primary mx-2' to={'/UpdateUser/${user.id}'}>Edit</Link>
+                              <button className='btn btn-danger mx-2'>Delete</button>
+                            </td>
                           </tr>
                         ))}
                       
