@@ -1,9 +1,12 @@
 import { useEffect, useState } from 'react';
-import '../../node_modules/bootstrap/dist/css/bootstrap.min.css';
+import '../../../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
 export default function Main(){
+
+    const {cin} = useParams();
+
     const [users, setUsers] = useState([]);
     useEffect(()=>{
 
@@ -13,7 +16,13 @@ export default function Main(){
     const loadUsers=async()=>{
         const result =await axios.get("http://localhost:9090/user/getAllUsers");
         setUsers(result.data);
-    }
+    };
+
+    const deleteUser = async (cin) => {
+        await axios.delete(`http://localhost:9090/user/deleteUser/${cin}`);
+        loadUsers();
+    };
+
     return(
       <div className="container-fluid">
         <div className="row content">
@@ -60,8 +69,11 @@ export default function Main(){
                             <td>{user.phone}</td>
                             <td>
                               <button className='btn btn-primary mx-2'>View</button>
-                              <Link className='btn btn-outline-primary mx-2' to={'/UpdateUser/${user.id}'}>Edit</Link>
-                              <button className='btn btn-danger mx-2'>Delete</button>
+                              <Link className='btn btn-outline-primary mx-2' 
+                                to={`/UpdateUser/${user.cin}`}>Edit</Link>
+                              <button className='btn btn-danger mx-2'
+                              onClick={()=> deleteUser(user.cin)}
+                              >Delete</button>
                             </td>
                           </tr>
                         ))}

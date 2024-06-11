@@ -1,23 +1,25 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Main from './main/main.jsx';
-import NavBar from './main/navbar.jsx';
-import Jam from './main/jam.jsx';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import AddUser from './main/addUser';
-import EditUser from './main/EditUser.jsx';
+import Main from './main/pack_/main';
+import AddUser from './main/pack_/addUser';
+import EditUser from './main/pack_/EditUser';
+import NavBar from './main/pack_/navbar';
+import Jam from './main/pack_/jam';
+
 
 
 function App() {
 
   return (
     <div className='App'>
+      
       <Router>
-        <NavBar/>
-        <Jam/>
+        <NavBar />
+        <Jam />
         <Routes>
-          <Route exact path='/main' element={<Main/>} />
+          <Route exact path='/main' element={<Main />} />
           <Route exact path='/AddUser' element={<AddUser />} />
-          <Route exact path='/UpdateUser/:id' element={EditUser} />
+          <Route exact path='/UpdateUser/:cin' element={<EditUser />} />
         </Routes>
       </Router>
       
