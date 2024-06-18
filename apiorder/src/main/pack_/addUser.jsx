@@ -23,7 +23,7 @@ export default function AddUser() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            await axios.post('http://localhost:9090/user/addUser', user);
+            await axios.post('http://localhost:9090/customer/addCustomer', user);
             alert('User added successfully');
             // Optionally reset the form
             setUser({
@@ -124,6 +124,7 @@ export default function AddUser() {
                                 onChange={handleChange}
                             />
                         </div>
+                        <div className='container row justify-content-center m-1'>
                         <button className='btn btn-outline-danger mx-2' type='submit'>Save</button>
                         <button className='btn btn-secondary' type='button' onClick={() => setUser({
                             cin: '',
@@ -134,6 +135,7 @@ export default function AddUser() {
                             email: '',
                             phone: ''
                         })}>Cancel</button>
+                        </div>
                     </form>
                 </div>
             </div>
