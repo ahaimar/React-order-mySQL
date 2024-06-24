@@ -5,10 +5,10 @@ import { useNavigate, useParams } from 'react-router-dom';
 export default function EditUser() {
 
     const navigate = useNavigate();
-    const { cin } = useParams();
+    const { id } = useParams();
 
     const [user, setUser] = useState({
-        cin: '',
+        
         firstName: '',
         lastName: '',
         password: '',
@@ -28,17 +28,18 @@ export default function EditUser() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            await axios.put(`http://localhost:9090/user/updateUser/${cin}`, user);
+            await axios.put(`http://localhost:9090/customer/updateCustomer/${id}`, user);
             alert('User updated successfully');
             navigate('/main');
         } catch (error) {
             console.error('There was an error updating the user!', error);
+            alert('There was an error updating the user!', error);
         }
     };
 
     const loadUser = async () => {
         try {
-            const result = await axios.get(`http://localhost:9090/user/${cin}`);
+            const result = await axios.get(`http://localhost:9090/customer/getCustomerById/${id}`);
             setUser(result.data);
         } catch (error) {
             console.error('There was an error loading the user!', error);
@@ -51,17 +52,7 @@ export default function EditUser() {
                 <div className='col-md-6 offset-md-3 border rounded p-4 mt-2 shadow'>
                     <h2 className='text-center'>Edit Customer</h2>
                     <form onSubmit={handleSubmit}>
-                        <div className='form-group'>
-                            <label htmlFor='cin'>Cin</label>
-                            <input
-                                type='text'
-                                className='form-control'
-                                placeholder='Add Cin'
-                                name='cin'
-                                value={user.cin}
-                                onChange={handleChange}
-                            />
-                        </div>
+                        
                         <div className='form-group'>
                             <label htmlFor='firstName'>First Name</label>
                             <input

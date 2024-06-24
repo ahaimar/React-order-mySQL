@@ -7,8 +7,8 @@ export default function AddUser() {
     let navgate = useNavigate()
 
     const [user, setUser] = useState({
-        cin: '',
-        ferstName: '',
+        id: '',
+        firstName: '',
         lastName: '',
         password: '',
         address: '',
@@ -28,7 +28,7 @@ export default function AddUser() {
             // Optionally reset the form
             setUser({
                 cin: '',
-                ferstName: '',
+                firstName: '',
                 lastName: '',
                 password: '',
                 address: '',
@@ -47,25 +47,15 @@ export default function AddUser() {
                 <div className='col-md-6 offset-md-3 border rounded p-4 mt-2 shadow'>
                     <h2 className='text-center'>New Customer</h2>
                     <form onSubmit={handleSubmit}>
+                        
                         <div className='form-group'>
-                            <label htmlFor='cin'>Cin</label>
-                            <input
-                                type='text'
-                                className='form-control'
-                                placeholder='Add Cin'
-                                name='cin'
-                                value={user.cin}
-                                onChange={handleChange}
-                            />
-                        </div>
-                        <div className='form-group'>
-                            <label htmlFor='ferstName'>First Name</label>
+                            <label htmlFor='firstName'>First Name</label>
                             <input
                                 type='text'
                                 className='form-control'
                                 placeholder='Add First Name'
-                                name='ferstName'
-                                value={user.ferstName}
+                                name='firstName'
+                                value={user.firstName}
                                 onChange={handleChange}
                             />
                         </div>
@@ -125,22 +115,22 @@ export default function AddUser() {
                             />
                         </div>
                         <div className='container row justify-content-center m-1'>
-                        <button className='btn btn-outline-danger mx-2' type='submit'>Save</button>
-                        <button className='btn btn-secondary' type='button' onClick={() => setUser({
-                            cin: '',
-                            ferstName: '',
-                            lastName: '',
-                            password: '',
-                            address: '',
-                            email: '',
-                            phone: ''
-                        })}>Cancel</button>
+                            <button className='btn btn-outline-primary' type='submit'>Save</button>
+                            <button className='btn btn-outline-danger' type='button' onClick={() => setUser({
+                                
+                                firstName: '',
+                                lastName: '',
+                                password: '',
+                                address: '',
+                                email: '',
+                                phone: ''
+                            })}>Cancel</button>
                         </div>
                     </form>
                 </div>
             </div>
             <aside>
-                <h2 className='text-center'>Customers</h2>
+                <h2 className='text-center'>the Customers</h2>
             </aside>
             
         </div>
