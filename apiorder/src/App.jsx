@@ -32,7 +32,7 @@ function App() {
           
           <Route exact path='/main' element={<Main />} />
           <Route exact path='/AddUser' element={<AddUser />} />
-          <Route exact path='/UpdateUser/:cin' element={<EditUser />} />
+          <Route exact path='/UpdateUser/:id' element={<EditUser />} />
           
           <Route exact path='/product' element={<Product />} />
           <Route exact path='/addProduct' element={<AddProduct />} />

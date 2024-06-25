@@ -2,9 +2,8 @@ import { useEffect, useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from 'axios';
 import { Link, useParams } from 'react-router-dom';
+
 import Jam from './jam';
-import Producte from './../pack_1/Producte';
-import index from './../index';
 
 export default function Main() {
 

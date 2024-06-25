@@ -71,6 +71,17 @@ export default function AddUser() {
                             />
                         </div>
                         <div className='form-group'>
+                            <label htmlFor='age'>Age</label>
+                            <input
+                                type='text'
+                                className='form-control'
+                                placeholder='Add age'
+                                name='age'
+                                value={user.age}
+                                onChange={handleChange}
+                            />
+                        </div>
+                        <div className='form-group'>
                             <label htmlFor='password'>Password</label>
                             <input
                                 type='password'
@@ -114,7 +125,7 @@ export default function AddUser() {
                                 onChange={handleChange}
                             />
                         </div>
-                        <div className='container row justify-content-center m-1'>
+                        <div className='d-flex justify-content-between mt-4'>
                             <button className='btn btn-outline-primary' type='submit'>Save</button>
                             <button className='btn btn-outline-danger' type='button' onClick={() => setUser({
                                 

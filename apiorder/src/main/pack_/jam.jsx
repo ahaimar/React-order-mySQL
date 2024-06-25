@@ -1,79 +1,59 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import { useParams } from 'react-router-dom';
 
 export default function CustomerSearch() {
-  const [searchTerm, setSearchTerm] = useState('');
-  const [customers, setCustomers] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
+    const [id, setId] = useState('');
+    const [customer, setCustomer] = useState(null);
+    const [error, setError] = useState('');
 
-  const { id } = useParams();
+    const handleSearch = async (e) => {
+        e.preventDefault(); // Prevent the form from submitting and reloading the page
+        setError(''); // Clear previous errors
+        console.log(`Searching for customer with ID: ${id}`);
 
-  const handleSearchChange = (event) => {
-    setSearchTerm(event.target.value);
-  };
+        try {
+            const response = await axios.get(`http://localhost:9090/customer/search/${id}`);
+            console.log('Response:', response);
+            setCustomer(response.data);
+            setError('');
+        } catch (err) {
+            console.error('Error occurred:', err);
+            setCustomer(null);
+            if (err.response && err.response.status === 404) {
+                setError('Customer not found.');
+            }else {
+                setError('An error occurred. Please try again.');
+            }
+        }
+    };
 
-  const fetchCustomers = async () => {
-    setLoading(true);
-    setError(null);
-    try {
-      const response = await axios.get(`http://localhost:9090/customer/search/${id}`, {
-        params: { search: searchTerm },
-      });
-      setCustomers(response.data);
-    } catch (error) {
-      console.error('Error fetching customers:', error);
-      setError('Error fetching customers. Please try again later.');
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  useEffect(() => {
-    const delayDebounceFn = setTimeout(() => {
-      fetchCustomers();
-    }, 300);
-
-    return () => clearTimeout(delayDebounceFn);
-  }, [searchTerm]);
-
-  const handleSearchSubmit = (event) => {
-    event.preventDefault();
-    fetchCustomers();
-  };
-
-  return (
-    <div className="container">
-      <div className="jumbotron">
-        <h1>Customer Search</h1>
-        <form className="d-flex" role="search" onSubmit={handleSearchSubmit}>
-          <input
-            className="form-control me-2"
-            type="search"
-            placeholder="Search"
-            aria-label="Search"
-            value={searchTerm}
-            onChange={handleSearchChange}
-          />
-          <button className="btn btn-outline-info" type="submit">
-            Search
-          </button>
-        </form>
-        {loading ? (<p>Loading...</p>) : error ? (<p>{error}</p> ) : (<ul>
-
-                {customers.map((customer) => (
-                            <li key={customer.id}>
-                              {customer.firstName} - {customer.lastName}
-                              {customer.phone} - {customer.email}
-                              {customer.address} - {customer.age} 
-                              {customer.email}
-              </li>
-            ))}
-          </ul>
-        )}
-      </div>
-    </div>
-  );
+    return (
+        <div className="container">
+            <div className="jumbotron">
+                <h1>Search Customer</h1>
+                <form className="d-flex" role="search" onSubmit={handleSearch}>
+                    <input 
+                        className="form-control me-2"
+                        type="text" 
+                        value={id} 
+                        onChange={(e) => setId(e.target.value)} 
+                        placeholder="Enter customer ID" 
+                    />
+                    <button className="btn btn-outline-info" type="submit">Search</button>
+                </form>
+                {error && <p style={{ color: 'red' }}>{error}</p>}
+                {customer && (
+                    <div>
+                        <h2>Customer Details</h2>
+                        <p>ID: {customer.id}</p>
+                        <p>Name: {customer.firstName} {customer.lastName}</p>
+                        <p>Phone: {customer.phone}</p>
+                        <p>Email: {customer.email}</p>
+                        <p>Address: {customer.address}</p>
+                        <p>Age: {customer.age}</p>
+                    </div>
+                )}
+            </div>
+        </div>
+    );
 }
