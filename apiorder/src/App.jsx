@@ -12,6 +12,7 @@ import EditUser from './main/pack_/EditUser';
 //--the long od produces the
 import Product from './main/pack_1/Producte';
 import AddProduct from './main/pack_1/addProduct';
+import UpDataProduct from './main/pack_1/EditProduct';
 
 //-- the long of Orders
 import Home from './main/home';
@@ -36,6 +37,7 @@ function App() {
           
           <Route exact path='/product' element={<Product />} />
           <Route exact path='/addProduct' element={<AddProduct />} />
+          <Route exact path='/updataproduct/:id' element={<UpDataProduct />} />
           
           <Route path="*" element={<NoPage />} />
         </Routes>

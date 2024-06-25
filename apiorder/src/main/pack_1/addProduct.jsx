@@ -1,100 +1,99 @@
-import React, {useState } from 'react'
+import React, { useState } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom'; 
+import { useNavigate } from 'react-router-dom';
 
-export default function addProduct() {
+export default function AddProduct() {
+  let navigate = useNavigate();
 
+  const [product, setProduct] = useState({
+    productName: '',
+    price: '',
+    description: ''
+  });
 
-    // eslint-disable-next-line react-hooks/rules-of-hooks
-    let navGate = useNavigate()
+  const handleChange = (e) => {
+    setProduct({ ...product, [e.target.name]: e.target.value });
+  };
 
-    // eslint-disable-next-line react-hooks/rules-of-hooks
-    const [product, setProduct] = useState({
-
-        titleProduct: '',
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      await axios.post('http://localhost:9090/product/addProduct', product);
+      alert('Product added successfully!!');
+      // Optionally reset the form
+      setProduct({
+        productName: '',
         price: '',
         description: ''
-    });
-
-    const handleChange = (e) => {
-        setProduct({ ...product, [e.target.name]: e.target.value });
-    };
-
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        try {
-            await axios.post('http://localhost:9090/product/addProduct', product);
-            alert('User added successfully');
-            // Optionally reset the form
-            setProduct({
-                titleProduct: '',
-                price: '',
-                description: ''
-            });
-        } catch (error) {
-            console.error('There was an error adding the user!', error);
-        }
-        navGate('/product')
-    };
+      });
+      navigate('/product');
+    } catch (error) {
+      console.error('There was an error adding the product!', error);
+    }
+  };
 
   return (
-    <div>
-        <div className='row'>
-                <div className='col-md-6 offset-md-3 border rounded p-4 mt-2 shadow'>
-                    <h2 className='text-center'>New Customer</h2>
-                    <form onSubmit={handleSubmit}>
-                        
-                        <div className='form-group'>
-                            <label htmlFor='firstName'>Product Name</label>
-                            <input
-                                type='text'
-                                className='form-control'
-                                placeholder='Add Product name'
-                                name='firstName'
-                                value={product.titleProduct}
-                                onChange={handleChange}
-                            />
-                        </div>
-                        <div className='form-group'>
-                            <label htmlFor='lastName'>add Price</label>
-                            <input
-                                type='number'
-                                className='form-control'
-                                placeholder='Price'
-                                name='lastName'
-                                value={product.price}
-                                onChange={handleChange}
-                            />
-                        </div>
-                        <div className='form-group'>
-                            <label htmlFor='password'>description</label>
-                            <input
-                                type='password'
-                                className='form-control'
-                                placeholder='Add description'
-                                name='password'
-                                value={product.description}
-                                onChange={handleChange}
-                            />
-                        </div>
-                        
-                        <div className='container row justify-content-center m-1'>
-                            <button className='btn btn-outline-primary' type='submit'>Save</button>
-                            <button className='btn btn-outline-danger' type='button' onClick={() => setProduct({
-                                
-                                titleProduct: '',
-                                price: '',
-                                description: ''
-                            })}>Cancel</button>
-                        </div>
-                    </form>
-                </div>
+    <div className="container">
+      <div className='row'>
+        <div className='col-md-6 offset-md-3 border rounded p-4 mt-2 shadow'>
+          <h2 className='text-center'>New Product</h2>
+          <form onSubmit={handleSubmit}>
+            <div className='form-group'>
+              <label htmlFor='productName'>Product Name</label>
+              <input
+                type='text'
+                className='form-control'
+                placeholder='Add Product name'
+                name='productName'
+                value={product.productName}
+                onChange={handleChange}
+                required
+              />
             </div>
-            <aside>
-                <h2 className='text-center'>the Products .</h2>
-            </aside>
-
-
+            <div className='form-group'>
+              <label htmlFor='price'>Add Price</label>
+              <input
+                type='number'
+                className='form-control'
+                placeholder='Price'
+                name='price'
+                value={product.price}
+                onChange={handleChange}
+                required
+              />
+            </div>
+            <div className='form-group'>
+              <label htmlFor='description'>description</label>
+              <input
+                type='text'
+                className='form-control'
+                placeholder='Add description'
+                name='description'
+                value={product.description}
+                onChange={handleChange}
+                required
+              />
+            </div>
+            <div className='d-flex justify-content-between mt-4'>
+              <button className='btn btn-outline-primary' type='submit'>Save</button>
+              <button
+                className='btn btn-outline-danger'
+                type='button'
+                onClick={() => setProduct({
+                  productName: '',
+                  price: '',
+                  description: ''
+                })}
+              >
+                Cancel
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+      <aside>
+        <h2 className='text-center'>The Products</h2>
+      </aside>
     </div>
-  )
+  );
 }
