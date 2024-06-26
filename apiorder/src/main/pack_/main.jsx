@@ -49,10 +49,10 @@ export default function Main() {
                                     <Link className="nav-link active" aria-current="page" to="/main">Customer</Link>
                                 </li>
                                 <li className="nav-item">
-                                    <Link className="nav-link" to="/pack_1/order">Order</Link>
+                                    <Link className="nav-link" aria-current="page" to="/order">Order</Link>
                                 </li>
                                 <li className="nav-item">
-                                    <Link className="nav-link" to="/pack_2/supplier">Supplier</Link>
+                                    <Link className="nav-link" aria-current="page" to="/supplier">Supplier</Link>
                                 </li>
                                 <li className="nav-item">
                                     <Link className="nav-link" to="/product">Product</Link>
@@ -62,19 +62,11 @@ export default function Main() {
                         </div>
                     </div>
                 </nav>
-                <Jam />
+                
             </div>
             <div className="row content">
                 <div className="col-sm-2 sidenav">
-                    <h4>Your Blog</h4>
-                    <div className="input-group">
-                        <input type="text" className="form-control" placeholder="Search Blog..." aria-label="Search Blog"/>
-                        <span className="input-group-btn">
-                            <button className="btn btn-default" type="button" aria-label="Search Button">
-                                <span className="glyphicon glyphicon-search"></span>
-                            </button>
-                        </span>
-                    </div>
+                <Jam />
                 </div>
                 <div className="col-sm-10">
                     <h4><small>List of All Customers</small></h4>

@@ -36,20 +36,12 @@ export default function Producte() {
     return (
         <div className="container-fluid">
             <NavBar />
-            <Jam />
+            
             <div className="row content">
-                <div className="col-sm-2 sidenav">
-                    <h4>Your Blog</h4>
-                    <div className="input-group">
-                        <input type="text" className="form-control" placeholder="Search Blog..." aria-label="Search Blog"/>
-                        <span className="input-group-btn">
-                            <button className="btn btn-default" type="button" aria-label="Search Button">
-                                <span className="glyphicon glyphicon-search"></span>
-                            </button>
-                        </span>
-                    </div>
+                <div className="col-sm-3 sidenav">
+                    <Jam />
                 </div>                              
-                <div className="col-sm-10">
+                <div className="col-sm-9">
                     <h4><small>List of All Products</small></h4>
                     <hr />
                     <div className='container'>

@@ -34,7 +34,7 @@ export default function AddProduct() {
 
   return (
     <div className="container">
-      <div className='row'>
+      <div className='row mt-5'>
         <div className='col-md-6 offset-md-3 border rounded p-4 mt-2 shadow'>
           <h2 className='text-center'>New Product</h2>
           <form onSubmit={handleSubmit}>

@@ -1,6 +1,8 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 export default function navBar() {
   return (
     <div>
@@ -15,7 +17,7 @@ export default function navBar() {
                 </li>
       
                 <li className="nav-item">
-                <Link className="btn mt-2 me-2 nav-link active" to="/main">Main !</Link>
+                <Link className="btn mt-2 me-2 nav-link active" to="/main">Home</Link>
                 </li>
             </ul>
             </div>
