@@ -25,20 +25,20 @@ import EditSupplier from './main/pack_2/EditSupplier';
 
 //-- the long of Home
 import Home from './main/home/home';
-import Login from './main/home/index';
 import Body from './main/home/Body';
-
+import Profile from './main/home/Profile';
+import { UserProvider } from './main/home/UserContext';
 
 import NoPage from './main/NoPage';//-- the long of no page items
 
 function App() {
 
   return (
-    <div className='App'>
+    <UserProvider>
       <Router>
         <Routes>
           <Route index element={<Home/>} />
-          <Route exact path='/' element={<Login/>} />
+          <Route exact path='/profile' element={<Profile />} />
           <Route exact path='/body' element={<Body />} />
 
           <Route exact path='/main' element={<Main />} />
@@ -59,8 +59,7 @@ function App() {
           <Route path="*" element={<NoPage />} />
         </Routes>
       </Router>
-      
-    </div>
+    </UserProvider>
   )
 }
 

@@ -3,6 +3,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
 export default function AddProduct() {
+  
   let navigate = useNavigate();
 
   const [product, setProduct] = useState({

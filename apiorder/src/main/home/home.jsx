@@ -57,16 +57,11 @@ const Home = () => {
 
   return (
     <div>
-      <div className="jumbotron">
-        <div className="container text-center">
-          <h1>Online Store</h1>
-          <p>Mission, Vision & Values</p>
-        </div>
+      <div className='mb-5'>
+        <NavBar />
       </div>
-
-      <NavBar />
-
-      <div className="row">
+      
+      <div className="row mt-5">
         <div className="col-sm-2">
           <div id="mySidenav" className="sidenav m-2">
             <p id="about" className="text-uppercase">Shopping Cart</p>
