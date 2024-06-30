@@ -18,26 +18,28 @@ import UpDataProduct from './main/pack_1/EditProduct';
 import Order from './main/pack_3/OrderMain';
 import UpDateOrder from './main/pack_3/EditOrder'
 
-//-- the supplier component 
+//-- the supplier  
 import Supplier from './main/pack_2/supplierMain';
 import AddSupplier from './main/pack_2/addSupplier';
 import EditSupplier from './main/pack_2/EditSupplier';
 
 //-- the long of Home
-import Home from './main/home';
-import Login from './main/index';
+import Home from './main/home/home';
+import Login from './main/home/index';
+import Body from './main/home/Body';
+
+
 import NoPage from './main/NoPage';//-- the long of no page items
 
 function App() {
 
   return (
     <div className='App'>
-      
       <Router>
         <Routes>
           <Route index element={<Home/>} />
           <Route exact path='/' element={<Login/>} />
-          <Route path="*" element={<NoPage />} />
+          <Route exact path='/body' element={<Body />} />
 
           <Route exact path='/main' element={<Main />} />
           <Route exact path='/AddUser' element={<AddUser />} />
@@ -53,7 +55,8 @@ function App() {
 
           <Route exact path='/order' element={<Order />} />
           <Route exact path='/updateOrder/:id' element={<UpDateOrder />} />
-          
+
+          <Route path="*" element={<NoPage />} />
         </Routes>
       </Router>
       

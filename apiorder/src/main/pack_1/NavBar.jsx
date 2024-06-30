@@ -19,6 +19,7 @@ export default function navBar() {
                 <li className="nav-item">
                 <Link className="btn mt-2 me-2 nav-link active" to="/main">Home</Link>
                 </li>
+                
             </ul>
             </div>
         </div>
